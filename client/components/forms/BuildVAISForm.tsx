@@ -543,8 +543,8 @@ export default function BuildVAISForm() {
         </div>
 
         {/* Enhanced Steps Progress */}
-        <Card className="bg-gradient-to-r from-valasys-orange/5 to-valasys-blue/5 border-valasys-orange/20 w-full">
-          <CardHeader className="pb-4 px-6">
+        <Card className="bg-gradient-to-r from-valasys-orange/5 to-valasys-blue/5 border-valasys-orange/20 w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+          <CardHeader className="pb-4 px-6 max-w-7xl mx-auto">
             {/* Step Progress Indicator */}
             <div className="space-y-6">
               {/* Desktop: Horizontal layout with connecting lines */}

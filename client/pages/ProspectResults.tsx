@@ -1667,13 +1667,9 @@ export default function ProspectResults() {
                                       <Button
                                         variant="ghost"
                                         size="sm"
-                                        aria-label={
-                                          isFavorite(prospect.id)
-                                            ? "Remove favorite"
-                                            : "Add favorite"
-                                        }
+                                        aria-label="Add to list"
                                         onClick={() =>
-                                          toggleFavorite(
+                                          handleAddToList(
                                             prospect.id,
                                             prospect.fullName,
                                           )
@@ -1682,12 +1678,12 @@ export default function ProspectResults() {
                                         <Star
                                           className={cn(
                                             "w-4 h-4",
-                                            isFavorite(prospect.id)
+                                            isProspectInAnyList(prospect.id)
                                               ? "text-yellow-500"
                                               : "text-gray-500",
                                           )}
                                           fill={
-                                            isFavorite(prospect.id)
+                                            isProspectInAnyList(prospect.id)
                                               ? "currentColor"
                                               : "none"
                                           }
@@ -1695,9 +1691,9 @@ export default function ProspectResults() {
                                       </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                      {isFavorite(prospect.id)
-                                        ? "Unfavorite"
-                                        : "Add to favorites"}
+                                      {isProspectInAnyList(prospect.id)
+                                        ? "Added to list"
+                                        : "Add to list"}
                                     </TooltipContent>
                                   </Tooltip>
                                 </div>

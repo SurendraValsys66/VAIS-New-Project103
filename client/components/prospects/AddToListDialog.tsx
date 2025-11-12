@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Star, Plus, Check } from "lucide-react";
+import { Star, Plus, Check, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -136,9 +136,24 @@ export default function AddToListDialog({
                   <Label className="text-sm font-semibold text-gray-700">
                     Your Lists ({lists.length})
                   </Label>
+
+                  {/* Search Input */}
+                  {lists.length > 3 && (
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Input
+                        placeholder="Search lists..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10 text-sm"
+                      />
+                    </div>
+                  )}
+
                   <ScrollArea className="h-auto max-h-64 border rounded-lg p-2">
                     <div className="space-y-2">
-                      {lists.map((list) => {
+                      {filteredLists.length > 0 ? (
+                        filteredLists.map((list) => {
                         const isSelected = selectedListIds.has(list.id);
                         const alreadyInList = list.prospects.includes(prospectId);
 
@@ -176,7 +191,12 @@ export default function AddToListDialog({
                             )}
                           </button>
                         );
-                      })}
+                        })
+                      ) : (
+                        <div className="text-center py-6">
+                          <p className="text-sm text-gray-500">No lists match "{searchTerm}"</p>
+                        </div>
+                      )}
                     </div>
                   </ScrollArea>
                 </div>

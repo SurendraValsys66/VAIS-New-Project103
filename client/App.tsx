@@ -20,6 +20,7 @@ import ABMLAL from "./pages/ABMLAL";
 import FindProspect from "./pages/FindProspect";
 import ProspectResults from "./pages/ProspectResults";
 import FavoritesProspects from "./pages/FavoritesProspects";
+import WishlistProspects from "./pages/WishlistProspects";
 import BuildCampaign from "./pages/BuildCampaign";
 import BuildMyCampaign from "./pages/BuildMyCampaign";
 import CampaignOverview from "./pages/CampaignOverview";
@@ -82,7 +83,7 @@ const App = () => (
                 <Route path="/prospect-results" element={<ProspectResults />} />
                 <Route
                   path="/wishlist-prospects"
-                  element={<FavoritesProspects />}
+                  element={<WishlistProspects />}
                 />
                 <Route path="/build-campaign" element={<BuildCampaign />} />
                 <Route

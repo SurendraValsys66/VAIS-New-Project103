@@ -1013,8 +1013,10 @@ export default function WishlistProspectDetails() {
                                   <div className="font-medium text-gray-900">
                                     {prospect.fullName}
                                   </div>
-                                  <div className="text-sm text-gray-500">
-                                    {prospect.intentSignal}
+                                  <div className="text-sm text-gray-500 flex items-center">
+                                    <Badge className="text-xs" variant="outline">
+                                      {prospect.intentSignal}
+                                    </Badge>
                                   </div>
                                 </div>
                               </div>

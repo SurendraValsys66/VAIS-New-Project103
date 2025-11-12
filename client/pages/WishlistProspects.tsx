@@ -46,7 +46,7 @@ import {
   Heart,
   BookmarkMinus,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
 export interface ProspectList {
@@ -57,6 +57,7 @@ export interface ProspectList {
 }
 
 export default function WishlistProspects() {
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   const [lists, setLists] = useState<ProspectList[]>(() => {
@@ -88,8 +89,7 @@ export default function WishlistProspects() {
   }, [lists, searchTerm]);
 
   const handleView = (list: ProspectList) => {
-    setSelectedList(list);
-    setViewDialogOpen(true);
+    navigate(`/wishlist-prospects/${list.id}`);
   };
 
   const handleEditStart = (list: ProspectList) => {
@@ -390,9 +390,12 @@ export default function WishlistProspects() {
                       filteredLists.map((list) => (
                         <TableRow key={list.id}>
                           <TableCell>
-                            <div className="font-medium text-gray-900">
+                            <button
+                              onClick={() => navigate(`/wishlist-prospects/${list.id}`)}
+                              className="font-medium text-gray-900 hover:text-valasys-orange cursor-pointer transition-colors"
+                            >
                               {list.name}
-                            </div>
+                            </button>
                           </TableCell>
                           <TableCell>
                             <Badge

@@ -42,7 +42,6 @@ import {
   Eye,
   Edit,
   Trash2,
-  Download,
   Heart,
   BookmarkMinus,
   Plus,

@@ -253,13 +253,18 @@ export default function AgreementModal({
                   id="agreementConfirmed"
                   checked={agreementConfirmed}
                   onCheckedChange={(checked) =>
-                    setAgreementConfirmed(checked === true)
+                    !isAlreadyConfirmed && setAgreementConfirmed(checked === true)
                   }
+                  disabled={isAlreadyConfirmed}
                   className="w-5 h-5 rounded-none"
                 />
                 <label
                   htmlFor="agreementConfirmed"
-                  className="text-sm text-valasys-gray-700 cursor-pointer"
+                  className={`text-sm ${
+                    isAlreadyConfirmed
+                      ? "text-valasys-gray-500"
+                      : "text-valasys-gray-700 cursor-pointer"
+                  }`}
                 >
                   I have read the entire agreement, understood all the terms and
                   conditions, and I agree to the Master Subscriber Agreement

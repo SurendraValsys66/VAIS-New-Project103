@@ -457,29 +457,30 @@ export function AddPaymentMethodDialog({
                 </div>
               </div>
 
-              <div className="flex gap-3 pt-6 border-t border-gray-200">
+              <div className="flex gap-2 md:gap-3 pt-6 border-t border-gray-200">
                 <Button
                   variant="outline"
                   onClick={handleClose}
                   disabled={isSubmitting}
-                  className="flex-1 h-12 border-2 border-gray-300 hover:border-gray-400 font-semibold text-gray-700 transition-all"
+                  className="flex-1 h-10 md:h-12 border-2 border-gray-300 hover:border-gray-400 font-semibold text-sm md:text-base text-gray-700 transition-all"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleAddCard}
                   disabled={isSubmitting}
-                  className="flex-1 h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 text-white font-bold shadow-lg hover:shadow-xl transition-all"
+                  className="flex-1 h-10 md:h-12 bg-gradient-to-r from-valasys-orange to-valasys-orange-light hover:from-valasys-orange/90 hover:to-valasys-orange-light/90 disabled:opacity-50 text-white font-bold text-sm md:text-base shadow-lg hover:shadow-xl transition-all"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Adding...</span>
+                      <div className="w-4 md:w-5 h-4 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span className="hidden sm:inline">Adding...</span>
                     </div>
                   ) : (
                     <div className="flex items-center justify-center gap-2">
-                      <Check className="w-5 h-5" />
-                      <span>Add Card</span>
+                      <Check className="w-4 md:w-5 h-4 md:h-5" />
+                      <span className="hidden sm:inline">Add Card</span>
+                      <span className="sm:hidden">Add</span>
                     </div>
                   )}
                 </Button>

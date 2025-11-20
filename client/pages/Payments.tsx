@@ -364,8 +364,17 @@ function ModernPaymentCard({
               )}
               <button
                 onClick={() => setDeleteOpen(true)}
-                className="p-2 rounded-full bg-red-100 border border-red-300 text-red-600 hover:bg-red-200 transition-all duration-200"
-                title="Delete card"
+                disabled={isLastPaymentMethod}
+                className={`p-2 rounded-full border transition-all duration-200 ${
+                  isLastPaymentMethod
+                    ? "bg-red-50 border-red-200 text-red-400 cursor-not-allowed opacity-50"
+                    : "bg-red-100 border-red-300 text-red-600 hover:bg-red-200"
+                }`}
+                title={
+                  isLastPaymentMethod
+                    ? "Cannot delete the only payment method"
+                    : "Delete card"
+                }
               >
                 <Trash2 className="w-4 h-4" />
               </button>

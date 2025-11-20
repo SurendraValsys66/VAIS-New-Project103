@@ -148,6 +148,25 @@ export function AddPaymentMethodDialog({
     [formData.cardNumber],
   );
 
+  useEffect(() => {
+    if (editingMethod) {
+      setPaymentType(
+        editingMethod.type === "paypal" ? "paypal" : "card",
+      );
+      setFormData({
+        cardholderName: editingMethod.cardholderName || "",
+        cardNumber: editingMethod.cardNumber || "",
+        expiryDate: editingMethod.expiryDate || "",
+        cvc: "",
+        country: "United States",
+        paypalEmail:
+          editingMethod.type === "paypal" ? editingMethod.cardNumber : "",
+      });
+    } else {
+      resetForm();
+    }
+  }, [editingMethod, open]);
+
   const getErrorMessage = (field: keyof AddPaymentFormData): string => {
     return errors.find((e) => e.field === field)?.message || "";
   };

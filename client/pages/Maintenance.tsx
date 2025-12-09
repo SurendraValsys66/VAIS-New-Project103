@@ -80,14 +80,14 @@ export default function Maintenance() {
         {/* Info Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {/* What's Happening */}
-          <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-all duration-300">
+          <div className="bg-white/70 backdrop-blur-lg border border-valasys-gray-200 rounded-xl p-5 hover:shadow-md transition-all duration-300">
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0">
                 <Wrench className="w-5 h-5 text-valasys-orange mt-1" />
               </div>
               <div className="text-left">
-                <h3 className="font-semibold text-white mb-1">Improvements</h3>
-                <p className="text-sm text-valasys-gray-400">
+                <h3 className="font-semibold text-valasys-gray-900 mb-1">Improvements</h3>
+                <p className="text-sm text-valasys-gray-600">
                   We're implementing new features and optimizing performance
                 </p>
               </div>
@@ -95,14 +95,14 @@ export default function Maintenance() {
           </div>
 
           {/* Stay Updated */}
-          <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-all duration-300">
+          <div className="bg-white/70 backdrop-blur-lg border border-valasys-gray-200 rounded-xl p-5 hover:shadow-md transition-all duration-300">
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0">
                 <Mail className="w-5 h-5 text-valasys-blue mt-1" />
               </div>
               <div className="text-left">
-                <h3 className="font-semibold text-white mb-1">Stay Updated</h3>
-                <p className="text-sm text-valasys-gray-400">
+                <h3 className="font-semibold text-valasys-gray-900 mb-1">Stay Updated</h3>
+                <p className="text-sm text-valasys-gray-600">
                   Subscribe to receive updates when we're back online
                 </p>
               </div>
@@ -111,32 +111,32 @@ export default function Maintenance() {
         </div>
 
         {/* Email Subscription */}
-        <div className="bg-gradient-to-r from-valasys-orange/10 to-valasys-blue/10 backdrop-blur-lg border border-white/10 rounded-xl p-6 mb-8">
+        <div className="bg-gradient-to-r from-valasys-orange/5 to-valasys-blue/5 backdrop-blur-lg border border-valasys-gray-200 rounded-xl p-6 mb-8 shadow-md">
           <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-valasys-gray-400 focus:outline-none focus:border-valasys-orange transition-all duration-300 backdrop-blur-sm"
+              className="flex-1 px-4 py-3 rounded-lg bg-white border border-valasys-gray-300 text-valasys-gray-900 placeholder-valasys-gray-500 focus:outline-none focus:border-valasys-orange focus:ring-2 focus:ring-valasys-orange/20 transition-all duration-300"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-valasys-orange to-valasys-blue text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-valasys-orange/30 transition-all duration-300 whitespace-nowrap"
+              className="px-6 py-3 bg-gradient-to-r from-valasys-orange to-valasys-blue text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-valasys-orange/25 transition-all duration-300 whitespace-nowrap"
             >
               Notify Me
             </button>
           </form>
-          <p className="text-xs text-valasys-gray-400 mt-3">
+          <p className="text-xs text-valasys-gray-600 mt-3">
             We'll email you when the site is back online
           </p>
         </div>
 
         {/* Footer Info */}
-        <div className="text-sm text-valasys-gray-400 space-y-2">
+        <div className="text-sm text-valasys-gray-600 space-y-2">
           <p>
             If you have any urgent inquiries, please reach out to{" "}
             <a
               href="mailto:support@valasys.com"
-              className="text-valasys-orange hover:text-valasys-orange-light transition-colors"
+              className="text-valasys-orange hover:text-valasys-orange-light font-semibold transition-colors"
             >
               support@valasys.com
             </a>

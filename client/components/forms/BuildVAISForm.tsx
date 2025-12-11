@@ -1485,6 +1485,14 @@ export default function BuildVAISForm() {
                   )}
                 </Tooltip>
 
+                <Button
+                  onClick={() => setShowFeedbackModal(true)}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Feedback
+                </Button>
+
                 <div className="text-center text-xs text-valasys-gray-500">
                   <div className="font-bold mb-1">
                     0/2000 Utilized Per Day Download

@@ -70,10 +70,7 @@ export function VAISFeedbackModal({
           <div className="space-y-2 text-center">
             <p className="text-lg font-bold text-gray-900 leading-relaxed">
               We love to hear from you! How's your experience with the{" "}
-              <span className="text-valasys-orange">
-                Valasys AI Score
-              </span>
-              ?
+              <span className="text-valasys-orange">Valasys AI Score</span>?
             </p>
 
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -92,11 +89,14 @@ export function VAISFeedbackModal({
                   onMouseLeave={() => setHoveredRating(null)}
                   className={cn(
                     "w-10 h-10 rounded font-bold text-white text-sm transition-all duration-200 hover:scale-110 border-2",
-                    rating === num ? "border-gray-800 shadow-lg scale-110" : "border-transparent",
+                    rating === num
+                      ? "border-gray-800 shadow-lg scale-110"
+                      : "border-transparent",
                   )}
                   style={{
                     backgroundColor: color,
-                    opacity: hoveredRating !== null && num > hoveredRating ? 0.5 : 1,
+                    opacity:
+                      hoveredRating !== null && num > hoveredRating ? 0.5 : 1,
                   }}
                   type="button"
                   title={`Rating ${num}`}

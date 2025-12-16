@@ -226,10 +226,18 @@ export const EmailBuilder: React.FC<EmailBuilderProps> = ({
               {/* Center - Editor Canvas */}
               <EmailCanvas
                 template={template}
+                templateSubject={templateSubject}
                 selectedBlockId={selectedBlockId}
                 onAddBlock={handleAddBlock}
                 onBlockUpdate={handleUpdateBlock}
                 onBlockSelect={setSelectedBlockId}
+                onTemplateSubjectChange={setTemplateSubject}
+                onBackgroundColorChange={(color) =>
+                  setTemplate({
+                    ...template,
+                    backgroundColor: color,
+                  })
+                }
               />
 
               {/* Right Sidebar - Settings Panel */}

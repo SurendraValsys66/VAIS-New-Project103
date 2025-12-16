@@ -224,15 +224,13 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
             />
           </div>
 
-          <ScrollArea className="flex-1">
-            <div className="p-4">
-              <div className="grid grid-cols-3 gap-3">
-                {filteredBlocks.map((block) => (
-                  <DraggableBlockButton key={block.id} block={block} />
-                ))}
-              </div>
+          <div className="flex-1 p-4 overflow-hidden">
+            <div className="grid grid-cols-3 gap-3">
+              {filteredBlocks.map((block) => (
+                <DraggableBlockButton key={block.id} block={block} />
+              ))}
             </div>
-          </ScrollArea>
+          </div>
         </TabsContent>
 
         <TabsContent

@@ -27,9 +27,17 @@ export const EmailCanvas: React.FC<EmailCanvasProps> = ({
   onBackgroundColorChange,
 }) => {
   const [{ isOver }, drop] = useDrop(() => ({
-    accept: "block",
+    accept: ["block", "template"],
     drop: (item: any) => {
-      onAddBlock(item.block);
+      if (item.blocks) {
+        // Template dropped - add all blocks
+        item.blocks.forEach((block: ContentBlock) => {
+          onAddBlock(block);
+        });
+      } else if (item.block) {
+        // Single block dropped
+        onAddBlock(item.block);
+      }
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),

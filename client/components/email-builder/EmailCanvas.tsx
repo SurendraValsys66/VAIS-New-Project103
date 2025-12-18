@@ -9,9 +9,11 @@ interface EmailCanvasProps {
   template: EmailTemplate;
   templateSubject: string;
   selectedBlockId: string | null;
+  selectedFooterElement?: string | null;
   onAddBlock: (block: ContentBlock) => void;
   onBlockUpdate: (block: ContentBlock) => void;
   onBlockSelect: (id: string) => void;
+  onFooterElementSelect?: (element: string | null) => void;
   onTemplateSubjectChange: (subject: string) => void;
   onBackgroundColorChange: (color: string) => void;
 }

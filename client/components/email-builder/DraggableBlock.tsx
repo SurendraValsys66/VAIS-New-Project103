@@ -61,8 +61,8 @@ export const DraggableBlock: React.FC<DraggableBlockProps> = ({
     [index, onMoveBlock],
   );
 
-  const dragDropRef = React.useRef<HTMLDivElement>(null);
-  drag(drop(dragDropRef));
+  const ref = React.useRef<HTMLDivElement>(null);
+  drag(drop(ref));
 
   return (
     <div

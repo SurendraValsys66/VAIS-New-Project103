@@ -56,6 +56,7 @@ export const EmailBuilder: React.FC<EmailBuilderProps> = ({
   });
 
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
+  const [selectedFooterElement, setSelectedFooterElement] = useState<string | null>(null);
   const [previewMode, setPreviewMode] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [templateName, setTemplateName] = useState(template.name);

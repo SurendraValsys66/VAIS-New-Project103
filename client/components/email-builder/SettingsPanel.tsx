@@ -11,6 +11,8 @@ interface SettingsPanelProps {
   block: ContentBlock | null;
   onBlockUpdate: (block: ContentBlock) => void;
   onBlockDelete: () => void;
+  selectedFooterElement?: string | null;
+  onFooterElementSelect?: (element: string | null) => void;
 }
 
 export const SettingsPanel: React.FC<SettingsPanelProps> = ({

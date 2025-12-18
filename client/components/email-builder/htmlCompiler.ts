@@ -121,9 +121,13 @@ function parseHTML(html: string): ParsedNode[] {
         );
 
       // Parse tag name and attributes
-      const match = tagContent.match(/^([a-zA-Z0-9]+)(.*?)$/)!;
+      const match = tagContent.match(/^([a-zA-Z0-9-]+)(.*?)$/);
+      if (!match) {
+        currentPos = tagEnd + 1;
+        continue;
+      }
       const tag = match[1].toLowerCase();
-      const attrString = match[2];
+      const attrString = match[2] || "";
 
       // Parse attributes
       const attributes: Record<string, string> = {};

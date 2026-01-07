@@ -318,77 +318,74 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock, onSelectBl
     .filter((section) => section.items.length > 0 || searchQuery === "");
 
   return (
-    <>
-      <div className="flex flex-col bg-white w-full h-full overflow-hidden">
-        <div className="p-3 border-b border-gray-200 bg-white flex-shrink-0">
-          <Input
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="text-sm h-9"
-          />
-        </div>
-
-        <div className="flex-1 overflow-y-auto">
-          <div>
-            {filteredSections.map((section) => (
-              <div key={section.id}>
-                <button
-                  onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100"
-                >
-                  <span className="text-gray-600">{section.label}</span>
-                </button>
-
-                {expandedSections.has(section.id) && (
-                  <div className="bg-white">
-                    {section.items.map((item) => (
-                      <div key={item.id}>
-                        <button
-                          onClick={() => handleItemClick(item)}
-                          className="w-full flex items-center justify-between px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-valasys-orange transition-colors"
-                        >
-                          <div className="flex items-center gap-3">
-                            {getIcon(item.id)}
-                            <span>{item.label}</span>
-                          </div>
-                          {item.variants && item.variants.length > 0 ? (
-                            expandedItems.has(item.id) ? (
-                              <ChevronDown className="w-4 h-4 text-gray-300" />
-                            ) : (
-                              <ChevronRight className="w-4 h-4 text-gray-300" />
-                            )
-                          ) : (
-                            <ChevronRight className="w-4 h-4 text-gray-300" />
-                          )}
-                        </button>
-
-                        {item.variants && expandedItems.has(item.id) && (
-                          <div className="bg-gray-50 border-t border-gray-100">
-                            {item.variants.map((variant) => (
-                              <button
-                                key={variant.id}
-                                onClick={() => handleVariantClick(variant)}
-                                className="w-full text-left px-8 py-2.5 text-sm text-gray-600 hover:bg-white hover:text-valasys-orange transition-colors border-b border-gray-100 last:border-b-0"
-                              >
-                                <div className="font-medium">{variant.name}</div>
-                                {variant.description && (
-                                  <div className="text-gray-400 text-xs mt-0.5">{variant.description}</div>
-                                )}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="flex flex-col bg-white w-full h-full overflow-hidden">
+      <div className="p-3 border-b border-gray-200 bg-white flex-shrink-0">
+        <Input
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="text-sm h-9"
+        />
       </div>
 
-    </>
+      <div className="flex-1 overflow-y-auto">
+        <div>
+          {filteredSections.map((section) => (
+            <div key={section.id}>
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100"
+              >
+                <span className="text-gray-600">{section.label}</span>
+              </button>
+
+              {expandedSections.has(section.id) && (
+                <div className="bg-white">
+                  {section.items.map((item) => (
+                    <div key={item.id}>
+                      <button
+                        onClick={() => handleItemClick(item)}
+                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-valasys-orange transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          {getIcon(item.id)}
+                          <span>{item.label}</span>
+                        </div>
+                        {item.variants && item.variants.length > 0 ? (
+                          expandedItems.has(item.id) ? (
+                            <ChevronDown className="w-4 h-4 text-gray-300" />
+                          ) : (
+                            <ChevronRight className="w-4 h-4 text-gray-300" />
+                          )
+                        ) : (
+                          <ChevronRight className="w-4 h-4 text-gray-300" />
+                        )}
+                      </button>
+
+                      {item.variants && expandedItems.has(item.id) && (
+                        <div className="bg-gray-50 border-t border-gray-100">
+                          {item.variants.map((variant) => (
+                            <button
+                              key={variant.id}
+                              onClick={() => handleVariantClick(variant)}
+                              className="w-full text-left px-8 py-2.5 text-sm text-gray-600 hover:bg-white hover:text-valasys-orange transition-colors border-b border-gray-100 last:border-b-0"
+                            >
+                              <div className="font-medium">{variant.name}</div>
+                              {variant.description && (
+                                <div className="text-gray-400 text-xs mt-0.5">{variant.description}</div>
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };

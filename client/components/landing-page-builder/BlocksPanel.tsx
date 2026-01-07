@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Grid3x3, Settings, Zap, Share2, Lock, Palette } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   createHeaderBlock,
   createHeroBlock,
@@ -21,6 +20,7 @@ interface BlocksPanelProps {
 interface BlockItem {
   id: string;
   label: string;
+  icon?: React.ReactNode;
   onCreate: () => LandingPageBlock;
 }
 
@@ -28,14 +28,57 @@ interface SectionGroup {
   id: string;
   label: string;
   items: BlockItem[];
-  defaultExpanded?: boolean;
 }
 
 export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
-    new Set(["start", "blocks", "cms", "elements"]),
+    new Set(["start", "basics", "cms", "elements"]),
   );
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(
+    new Set(),
+  );
+
+  const getIconColor = (itemId: string) => {
+    const iconMap: Record<string, string> = {
+      sections: "text-gray-500",
+      navigation: "text-gray-500",
+      menus: "text-gray-500",
+      collections: "text-blue-500",
+      fields: "text-blue-500",
+      icons: "text-blue-500",
+      media: "text-cyan-500",
+      forms: "text-green-500",
+      interactive: "text-orange-500",
+      social: "text-red-500",
+      utility: "text-gray-500",
+      creative: "text-purple-500",
+      wireframer: "text-gray-500",
+    };
+    return iconMap[itemId] || "text-gray-500";
+  };
+
+  const getIcon = (itemId: string) => {
+    const iconSize = "w-5 h-5";
+    const colorClass = getIconColor(itemId);
+    
+    const iconMap: Record<string, React.ReactNode> = {
+      sections: <Grid3x3 className={`${iconSize} ${colorClass}`} />,
+      navigation: <Settings className={`${iconSize} ${colorClass}`} />,
+      menus: <Zap className={`${iconSize} ${colorClass}`} />,
+      collections: <Settings className={`${iconSize} ${colorClass}`} />,
+      fields: <Grid3x3 className={`${iconSize} ${colorClass}`} />,
+      icons: <Settings className={`${iconSize} ${colorClass}`} />,
+      media: <Share2 className={`${iconSize} ${colorClass}`} />,
+      forms: <Lock className={`${iconSize} ${colorClass}`} />,
+      interactive: <Zap className={`${iconSize} ${colorClass}`} />,
+      social: <Share2 className={`${iconSize} ${colorClass}`} />,
+      utility: <Settings className={`${iconSize} ${colorClass}`} />,
+      creative: <Palette className={`${iconSize} ${colorClass}`} />,
+      wireframer: <Grid3x3 className={`${iconSize} ${colorClass}`} />,
+    };
+    return iconMap[itemId] || null;
+  };
 
   const sectionGroups: SectionGroup[] = [
     {
@@ -43,21 +86,20 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
       label: "Start",
       items: [
         {
-          id: "userguide",
-          label: "User Guide",
+          id: "wireframer",
+          label: "Wireframer",
           onCreate: createHeaderBlock,
         },
       ],
-      defaultExpanded: true,
     },
     {
-      id: "blocks",
-      label: "Blocks",
+      id: "basics",
+      label: "Basics",
       items: [
         {
           id: "sections",
           label: "Sections",
-          onCreate: createHeaderBlock,
+          onCreate: createHeroBlock,
         },
         {
           id: "navigation",
@@ -67,10 +109,9 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
         {
           id: "menus",
           label: "Menus",
-          onCreate: createHeaderBlock,
+          onCreate: createContactFormBlock,
         },
       ],
-      defaultExpanded: true,
     },
     {
       id: "cms",
@@ -79,15 +120,14 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
         {
           id: "collections",
           label: "Collections",
-          onCreate: createHeroBlock,
-        },
-        {
-          id: "fonts",
-          label: "Fonts",
           onCreate: createFeaturesBlock,
         },
+        {
+          id: "fields",
+          label: "Fields",
+          onCreate: createTestimonialsBlock,
+        },
       ],
-      defaultExpanded: true,
     },
     {
       id: "elements",
@@ -96,12 +136,12 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
         {
           id: "icons",
           label: "Icons",
-          onCreate: createTestimonialsBlock,
+          onCreate: createAboutBlock,
         },
         {
-          id: "mobile",
-          label: "Mobile",
-          onCreate: createAboutBlock,
+          id: "media",
+          label: "Media",
+          onCreate: createFeaturesBlock,
         },
         {
           id: "forms",
@@ -109,32 +149,24 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
           onCreate: createContactFormBlock,
         },
         {
-          id: "icons-more",
-          label: "Icons/More",
-          onCreate: createFooterBlock,
+          id: "interactive",
+          label: "Interactive",
+          onCreate: createTestimonialsBlock,
         },
-      ],
-      defaultExpanded: true,
-    },
-    {
-      id: "social",
-      label: "Social",
-      items: [
         {
-          id: "social-icons",
-          label: "Social Icons",
+          id: "social",
+          label: "Social",
           onCreate: createSectionSpacerBlock,
         },
-      ],
-    },
-    {
-      id: "drafts",
-      label: "Drafts",
-      items: [
         {
-          id: "draft-pages",
-          label: "Draft Pages",
+          id: "utility",
+          label: "Utility",
           onCreate: createHeaderBlock,
+        },
+        {
+          id: "creative",
+          label: "Creative",
+          onCreate: createFooterBlock,
         },
       ],
     },
@@ -150,6 +182,16 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
     setExpandedSections(newExpanded);
   };
 
+  const toggleItem = (itemId: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(itemId)) {
+      newExpanded.delete(itemId);
+    } else {
+      newExpanded.add(itemId);
+    }
+    setExpandedItems(newExpanded);
+  };
+
   const filteredSections = sectionGroups
     .map((section) => ({
       ...section,
@@ -161,41 +203,43 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
 
   return (
     <div className="flex flex-col bg-white w-full h-full overflow-hidden">
-      <div className="p-4 border-b border-gray-200 bg-white flex-shrink-0">
+      <div className="p-3 border-b border-gray-200 bg-white flex-shrink-0">
         <Input
-          placeholder="Search blocks..."
+          placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="text-sm"
+          className="text-sm h-9"
         />
       </div>
 
       <div className="flex-1 overflow-y-auto">
         <div>
           {filteredSections.map((section) => (
-            <div key={section.id} className="py-0">
+            <div key={section.id}>
               <button
                 onClick={() => toggleSection(section.id)}
-                className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100"
               >
-                <span>{section.label}</span>
-                {expandedSections.has(section.id) ? (
-                  <ChevronDown className="w-4 h-4 text-gray-400" />
-                ) : (
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                )}
+                <span className="text-gray-600">{section.label}</span>
               </button>
 
               {expandedSections.has(section.id) && (
-                <div className="bg-white px-0 py-1">
+                <div className="bg-white">
                   {section.items.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => onAddBlock(item.onCreate())}
-                      className="w-full text-left px-6 py-2 text-sm text-gray-600 hover:text-valasys-orange hover:bg-orange-50 transition-colors"
-                    >
-                      {item.label}
-                    </button>
+                    <div key={item.id}>
+                      <button
+                        onClick={() => {
+                          onAddBlock(item.onCreate());
+                        }}
+                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-valasys-orange transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          {getIcon(item.id)}
+                          <span>{item.label}</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-gray-300" />
+                      </button>
+                    </div>
                   ))}
                 </div>
               )}

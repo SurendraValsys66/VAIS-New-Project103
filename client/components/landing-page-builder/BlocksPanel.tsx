@@ -25,6 +25,7 @@ import { LandingPageBlock } from "./types";
 interface BlocksPanelProps {
   onAddBlock: (block: LandingPageBlock) => void;
   onSelectBlockVariant?: (variantName: string) => void;
+  onOpenSectionsPanel?: () => void;
 }
 
 interface BlockVariant {
@@ -52,6 +53,7 @@ interface SectionGroup {
 export const BlocksPanel: React.FC<BlocksPanelProps> = ({
   onAddBlock,
   onSelectBlockVariant,
+  onOpenSectionsPanel,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
@@ -307,7 +309,9 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({
   };
 
   const handleItemClick = (item: BlockItem) => {
-    if (item.variants && item.variants.length > 0) {
+    if (item.id === "sections") {
+      onOpenSectionsPanel?.();
+    } else if (item.variants && item.variants.length > 0) {
       toggleItem(item.id);
     } else {
       onAddBlock(item.onCreate());

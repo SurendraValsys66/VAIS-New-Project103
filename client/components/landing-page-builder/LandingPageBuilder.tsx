@@ -17,6 +17,7 @@ import {
 } from "./utils";
 import { LandingPagePreview } from "./LandingPagePreview";
 import { BlocksPanel } from "./BlocksPanel";
+import { SectionsPanel } from "./SectionsPanel";
 
 interface LandingPageBuilderProps {
   pageId?: string;
@@ -31,6 +32,7 @@ export const LandingPageBuilder: React.FC<LandingPageBuilderProps> = ({
   const [pageName, setPageName] = useState("");
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isSectionsPanelOpen, setIsSectionsPanelOpen] = useState(false);
 
   useEffect(() => {
     if (pageId) {
@@ -123,6 +125,28 @@ export const LandingPageBuilder: React.FC<LandingPageBuilderProps> = ({
     });
   };
 
+  const handleSelectTemplate = (templateId: string) => {
+    // Map template IDs to actual blocks
+    const templateBlockMap: Record<string, () => LandingPageBlock> = {
+      "template-1": createHeroBlock,
+      "template-2": createHeroBlock,
+      "template-3": createFeaturesBlock,
+      "template-4": createAboutBlock,
+      "template-5": createAboutBlock,
+      "template-6": createFeaturesBlock,
+      "template-7": createFeaturesBlock,
+      "template-8": createHeaderBlock,
+      "template-9": createTestimonialsBlock,
+    };
+
+    const blockCreator = templateBlockMap[templateId];
+    if (blockCreator && page) {
+      const newBlock = blockCreator();
+      handleAddBlock(newBlock);
+      setIsSectionsPanelOpen(false);
+    }
+  };
+
   const handleSave = async () => {
     if (!page) return;
 
@@ -171,8 +195,21 @@ export const LandingPageBuilder: React.FC<LandingPageBuilderProps> = ({
             Back
           </Button>
         </div>
-        <BlocksPanel onAddBlock={handleAddBlock} />
+        <BlocksPanel
+          onAddBlock={handleAddBlock}
+          onOpenSectionsPanel={() => setIsSectionsPanelOpen(true)}
+        />
       </div>
+
+      {/* Right Sidebar - Sections Panel (conditional) */}
+      {isSectionsPanelOpen && (
+        <div className="w-80 bg-white border-r border-gray-200 overflow-hidden flex flex-col">
+          <SectionsPanel
+            onSelectTemplate={handleSelectTemplate}
+            onBack={() => setIsSectionsPanelOpen(false)}
+          />
+        </div>
+      )}
 
       {/* Main Editor Area */}
       <div className="flex-1 flex flex-col">

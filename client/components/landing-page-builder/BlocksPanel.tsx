@@ -48,7 +48,6 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock, onSelectBl
   const [expandedItems, setExpandedItems] = useState<Set<string>>(
     new Set(),
   );
-  const [selectedVariantGroup, setSelectedVariantGroup] = useState<BlockItem | null>(null);
 
   const getIconColor = (itemId: string) => {
     const iconMap: Record<string, string> = {

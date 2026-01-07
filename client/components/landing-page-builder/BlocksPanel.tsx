@@ -171,9 +171,9 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        <div className="py-2">
+        <div>
           {filteredSections.map((section) => (
-            <div key={section.id} className="border-b border-gray-100 last:border-b-0">
+            <div key={section.id} className="py-0">
               <button
                 onClick={() => toggleSection(section.id)}
                 className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
@@ -187,12 +187,12 @@ export const BlocksPanel: React.FC<BlocksPanelProps> = ({ onAddBlock }) => {
               </button>
 
               {expandedSections.has(section.id) && (
-                <div className="px-2 py-2 bg-gray-50">
+                <div className="bg-white px-0 py-1">
                   {section.items.map((item) => (
                     <button
                       key={item.id}
                       onClick={() => onAddBlock(item.onCreate())}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-white hover:text-valasys-orange rounded transition-colors"
+                      className="w-full text-left px-6 py-2 text-sm text-gray-600 hover:text-valasys-orange hover:bg-orange-50 transition-colors"
                     >
                       {item.label}
                     </button>

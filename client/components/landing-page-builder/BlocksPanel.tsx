@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronRight, Grid3x3, Settings, Zap, Share2, Lock, Palette, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Grid3x3, Settings, Zap, Share2, Lock, Palette } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   createHeaderBlock,

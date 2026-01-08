@@ -304,6 +304,23 @@ export const createPricingFooterBlock = (): LandingPageBlock => ({
   },
 });
 
+// Template block creators that return arrays of blocks
+export const createPricingTemplate = (): LandingPageBlock[] => [
+  createPricingBlock(),
+];
+
+export const createFaqTemplate = (): LandingPageBlock[] => [
+  createFaqBlock(),
+];
+
+export const createSignupTemplate = (): LandingPageBlock[] => [
+  createSignupBlock(),
+];
+
+export const createPricingFooterTemplate = (): LandingPageBlock[] => [
+  createPricingFooterBlock(),
+];
+
 // Local storage functions
 export const getLandingPagesFromLocalStorage = (): LandingPage[] => {
   try {

@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LandingPageBlock } from "./types";
+import {
+  createPricingTemplate,
+  createFaqTemplate,
+  createSignupTemplate,
+  createPricingFooterTemplate,
+} from "./utils";
 
 interface SectionTemplate {
   id: string;

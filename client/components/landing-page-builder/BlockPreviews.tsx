@@ -60,12 +60,25 @@ export const HeroBlockPreview: React.FC<BlockPreviewProps> = ({
         <p className="text-xl text-gray-600 mb-8 max-w-2xl">
           {props.subheading}
         </p>
-        <button
-          style={{ backgroundColor: props.ctaButtonColor }}
-          className="px-8 py-3 text-white font-medium rounded hover:opacity-90 transition-opacity"
-        >
-          {props.ctaButtonText}
-        </button>
+        <div className="flex gap-4">
+          <button
+            style={{ backgroundColor: props.ctaButtonColor }}
+            className="px-8 py-3 text-white font-medium rounded hover:opacity-90 transition-opacity"
+          >
+            {props.ctaButtonText}
+          </button>
+          {props.secondaryButtonText && (
+            <button
+              style={{
+                backgroundColor: props.secondaryButtonColor,
+                color: props.secondaryButtonTextColor,
+              }}
+              className="px-8 py-3 font-medium rounded hover:opacity-90 transition-opacity border border-gray-300"
+            >
+              {props.secondaryButtonText}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

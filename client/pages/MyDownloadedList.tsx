@@ -46,6 +46,7 @@ import {
   Save,
   Loader2,
   Mail,
+  MoreVertical,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

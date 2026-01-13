@@ -41,6 +41,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const [marginRight, setMarginRight] = useState(marginValue);
   const [marginBottom, setMarginBottom] = useState(marginValue);
   const [marginLeft, setMarginLeft] = useState(marginValue);
+  const [selectedFeatureId, setSelectedFeatureId] = useState<string | null>(null);
 
   // Initialize selectedCardId when block changes to twoColumnCard
   React.useEffect(() => {

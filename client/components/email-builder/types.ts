@@ -384,6 +384,24 @@ export interface SplitImageCardBlock {
   visibility: "all" | "desktop" | "mobile";
 }
 
+export interface TwoColumnCardBlock {
+  type: "twoColumnCard";
+  id: string;
+  cards: {
+    id: string;
+    title: string;
+    description: string;
+    backgroundColor: string;
+    textColor: string;
+    borderRadius: number;
+    padding: number;
+    margin: number;
+  }[];
+  width: number;
+  widthUnit: "px" | "%";
+  visibility: "all" | "desktop" | "mobile";
+}
+
 export type ContentBlock =
   | TitleBlock
   | TextBlock

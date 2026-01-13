@@ -5432,6 +5432,277 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           </div>
         );
       }
+      case "features": {
+        const featuresBlock = block as any;
+        const selectedFeature = featuresBlock.features?.find(
+          (feature: any) => feature.id === selectedFeatureId,
+        );
+
+        const handleFeatureUpdate = (fieldName: string, value: any) => {
+          if (!selectedFeature) return;
+          const updatedFeatures = featuresBlock.features.map((feature: any) =>
+            feature.id === selectedFeatureId
+              ? { ...feature, [fieldName]: value }
+              : feature,
+          );
+          onBlockUpdate({ ...featuresBlock, features: updatedFeatures });
+        };
+
+        return (
+          <div className="space-y-5">
+            <div>
+              <Label className="text-xs font-semibold text-gray-700 mb-2 block">
+                Select Feature to Edit
+              </Label>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {featuresBlock.features?.map((feature: any, index: number) => (
+                  <button
+                    key={feature.id}
+                    onClick={() => setSelectedFeatureId(feature.id)}
+                    className={`px-3 py-2 rounded text-xs font-medium transition-all ${
+                      selectedFeatureId === feature.id
+                        ? "bg-valasys-orange text-white ring-2 ring-orange-300"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    Feature {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <Label className="text-xs font-semibold text-gray-700 mb-2 block">
+                Columns Count
+              </Label>
+              <select
+                value={featuresBlock.columnsCount}
+                onChange={(e) =>
+                  onBlockUpdate({
+                    ...featuresBlock,
+                    columnsCount: parseInt(e.target.value),
+                  })
+                }
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-valasys-orange focus:border-transparent"
+              >
+                <option value="1">1 Column</option>
+                <option value="2">2 Columns</option>
+                <option value="3">3 Columns</option>
+                <option value="4">4 Columns</option>
+              </select>
+            </div>
+
+            {selectedFeature && (
+              <>
+                <div>
+                  <Label
+                    htmlFor="featureIcon"
+                    className="text-xs font-semibold text-gray-700 mb-2 block"
+                  >
+                    Icon/Emoji
+                  </Label>
+                  <Input
+                    id="featureIcon"
+                    value={selectedFeature.icon}
+                    onChange={(e) =>
+                      handleFeatureUpdate("icon", e.target.value)
+                    }
+                    placeholder="e.g., ❤️"
+                    className="focus:ring-valasys-orange focus:ring-2"
+                  />
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="featureTitle"
+                    className="text-xs font-semibold text-gray-700 mb-2 block"
+                  >
+                    Title
+                  </Label>
+                  <Input
+                    id="featureTitle"
+                    value={selectedFeature.title}
+                    onChange={(e) =>
+                      handleFeatureUpdate("title", e.target.value)
+                    }
+                    placeholder="e.g., Feature One"
+                    className="focus:ring-valasys-orange focus:ring-2"
+                  />
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="featureDescription"
+                    className="text-xs font-semibold text-gray-700 mb-2 block"
+                  >
+                    Description
+                  </Label>
+                  <textarea
+                    id="featureDescription"
+                    value={selectedFeature.description}
+                    onChange={(e) =>
+                      handleFeatureUpdate("description", e.target.value)
+                    }
+                    placeholder="Feature description..."
+                    rows={3}
+                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-valasys-orange focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-bold text-gray-900 mb-3">
+                    Styling
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-1 block">
+                        Title Font Size
+                      </Label>
+                      <div className="flex gap-2">
+                        <Input
+                          type="number"
+                          min="12"
+                          max="72"
+                          value={selectedFeature.titleFontSize}
+                          onChange={(e) =>
+                            handleFeatureUpdate(
+                              "titleFontSize",
+                              parseInt(e.target.value),
+                            )
+                          }
+                          className="flex-1 focus:ring-valasys-orange focus:ring-2"
+                        />
+                        <span className="px-2 py-1 text-sm text-gray-600">
+                          px
+                        </span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-1 block">
+                        Description Font Size
+                      </Label>
+                      <div className="flex gap-2">
+                        <Input
+                          type="number"
+                          min="10"
+                          max="32"
+                          value={selectedFeature.fontSize}
+                          onChange={(e) =>
+                            handleFeatureUpdate(
+                              "fontSize",
+                              parseInt(e.target.value),
+                            )
+                          }
+                          className="flex-1 focus:ring-valasys-orange focus:ring-2"
+                        />
+                        <span className="px-2 py-1 text-sm text-gray-600">
+                          px
+                        </span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-2 block">
+                        Text Color
+                      </Label>
+                      <div className="flex gap-2">
+                        <input
+                          type="color"
+                          value={selectedFeature.textColor}
+                          onChange={(e) =>
+                            handleFeatureUpdate("textColor", e.target.value)
+                          }
+                          className="w-12 h-10 rounded border border-gray-300 cursor-pointer"
+                        />
+                        <Input
+                          value={selectedFeature.textColor}
+                          onChange={(e) =>
+                            handleFeatureUpdate("textColor", e.target.value)
+                          }
+                          placeholder="#000000"
+                          className="flex-1 text-xs focus:ring-valasys-orange focus:ring-2"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-2 block">
+                        Background Color
+                      </Label>
+                      <div className="flex gap-2">
+                        <input
+                          type="color"
+                          value={selectedFeature.backgroundColor}
+                          onChange={(e) =>
+                            handleFeatureUpdate("backgroundColor", e.target.value)
+                          }
+                          className="w-12 h-10 rounded border border-gray-300 cursor-pointer"
+                        />
+                        <Input
+                          value={selectedFeature.backgroundColor}
+                          onChange={(e) =>
+                            handleFeatureUpdate("backgroundColor", e.target.value)
+                          }
+                          placeholder="#ffffff"
+                          className="flex-1 text-xs focus:ring-valasys-orange focus:ring-2"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-1 block">
+                        Border Radius
+                      </Label>
+                      <div className="flex gap-2">
+                        <Input
+                          type="number"
+                          min="0"
+                          max="50"
+                          value={selectedFeature.borderRadius}
+                          onChange={(e) =>
+                            handleFeatureUpdate(
+                              "borderRadius",
+                              parseInt(e.target.value),
+                            )
+                          }
+                          className="flex-1 focus:ring-valasys-orange focus:ring-2"
+                        />
+                        <span className="px-2 py-1 text-sm text-gray-600">
+                          px
+                        </span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-gray-700 mb-1 block">
+                        Padding
+                      </Label>
+                      <div className="flex gap-2">
+                        <Input
+                          type="number"
+                          min="0"
+                          value={selectedFeature.padding}
+                          onChange={(e) =>
+                            handleFeatureUpdate(
+                              "padding",
+                              parseInt(e.target.value),
+                            )
+                          }
+                          className="flex-1 focus:ring-valasys-orange focus:ring-2"
+                        />
+                        <span className="px-2 py-1 text-sm text-gray-600">
+                          px
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        );
+      }
       default:
         return null;
     }

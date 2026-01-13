@@ -15,7 +15,8 @@ export type BlockType =
   | "centeredImageCard"
   | "splitImageCard"
   | "twoColumnCard"
-  | "stats";
+  | "stats"
+  | "features";
 
 export interface TitleBlock {
   type: "title";

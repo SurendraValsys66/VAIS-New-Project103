@@ -943,9 +943,7 @@ export default function BuildVAISForm() {
               <Card
                 className={cn(
                   "transition-all duration-200",
-                  blinkingField === "intentTopics"
-                    ? "border-blink"
-                    : "",
+                  blinkingField === "intentTopics" ? "border-blink" : "",
                   currentStep === 2
                     ? "ring-2 ring-valasys-orange/50 shadow-lg"
                     : "",
@@ -1094,7 +1092,7 @@ export default function BuildVAISForm() {
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className={cn(
                         "pl-10",
-                        blinkingField === "searchTopics" ? "border-blink" : ""
+                        blinkingField === "searchTopics" ? "border-blink" : "",
                       )}
                     />
                   </div>
@@ -1500,7 +1498,7 @@ export default function BuildVAISForm() {
                       className={cn(
                         blinkingField === "buildVAIS"
                           ? "border-2 border-solid border-blink rounded-lg"
-                          : ""
+                          : "",
                       )}
                     >
                       <Button

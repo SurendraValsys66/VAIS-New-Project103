@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Trash2, X } from "lucide-react";
 import { SocialLinksEditor } from "./SocialLinksEditor";
 import { FooterSocialLinksEditor } from "./FooterSocialLinksEditor";
+import { generateId } from "./utils";
 
 interface SettingsPanelProps {
   block: ContentBlock | null;

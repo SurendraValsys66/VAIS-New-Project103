@@ -48,6 +48,9 @@ import OnboardingCategory from "./pages/OnboardingCategory";
 import OnboardingThankYou from "./pages/OnboardingThankYou";
 import MasteryGuide from "./pages/MasteryGuide";
 import ContactSales from "./pages/ContactSales";
+import Maintenance from "./pages/Maintenance";
+import Templates from "./pages/Templates";
+import LandingPages from "./pages/LandingPages";
 
 const queryClient = new QueryClient();
 
@@ -110,6 +113,8 @@ const App = () => (
                 <Route path="/notifications" element={<AllNotifications />} />
                 <Route path="/spending-history" element={<SpendingHistory />} />
                 <Route path="/integrations" element={<Integrations />} />
+                <Route path="/templates" element={<Templates />} />
+                <Route path="/landing-pages" element={<LandingPages />} />
                 <Route path="/mastery" element={<MasteryGuide />} />
 
                 {/* Onboarding flow */}
@@ -134,6 +139,8 @@ const App = () => (
                   path="/onboarding/complete"
                   element={<OnboardingThankYou />}
                 />
+
+                <Route path="/maintenance" element={<Maintenance />} />
 
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

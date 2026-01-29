@@ -35,6 +35,8 @@ import {
   ChevronDown,
   Lock,
   Heart,
+  Mail,
+  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -115,6 +117,18 @@ const utilityItems = [
     href: "/my-downloads",
     icon: Download,
     tourId: "downloads-nav",
+  },
+  {
+    name: "Templates",
+    href: "/templates",
+    icon: Mail,
+    tourId: "templates-nav",
+  },
+  {
+    name: "Landing Pages",
+    href: "/landing-pages",
+    icon: Layers,
+    tourId: "landing-pages-nav",
   },
   {
     name: "Integrations",

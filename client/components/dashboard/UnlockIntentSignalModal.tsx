@@ -66,110 +66,138 @@ export default function UnlockIntentSignalModal({
     }
   };
 
+  const premiumFeatures = [
+    {
+      icon: BarChart3,
+      title: "Real-Time Intent Data",
+      description: "Powered by Bombora"
+    },
+    {
+      icon: TrendingUp,
+      title: "Buying Signals",
+      description: "Track company behavior"
+    },
+    {
+      icon: Lightbulb,
+      title: "AI-Powered Insights",
+      description: "Deep intent analysis"
+    },
+    {
+      icon: LockIcon,
+      title: "Unlock All Signals",
+      description: "Access complete database"
+    },
+  ];
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 border-0 rounded-xl overflow-hidden">
-        <div className="bg-white">
-          {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-slate-50 via-blue-50/30 to-slate-100 px-5 py-3.5 border-b border-gray-200 overflow-hidden">
+      <DialogContent className="sm:max-w-4xl p-0 border-0 rounded-2xl overflow-hidden">
+        <button
+          onClick={() => onOpenChange(false)}
+          className="absolute top-4 right-4 z-50 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 bg-white">
+          {/* Left Column */}
+          <div className="relative bg-gradient-to-br from-valasys-orange via-orange-500 to-red-500 p-8 sm:p-12 flex flex-col justify-between rounded-l-2xl overflow-hidden">
             {/* Decorative elements */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-valasys-orange/5 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-1/2 w-24 h-24 bg-blue-400/5 rounded-full blur-3xl"></div>
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
             </div>
 
-            <div className="relative flex items-center gap-3 justify-between">
-              <div className="flex items-center gap-3 flex-1 min-w-0">
-                {/* Icon with glow effect */}
-                <div className="p-2 bg-gradient-to-br from-valasys-orange via-orange-500 to-red-500 rounded-lg flex-shrink-0 shadow-md shadow-orange-200/40 ring-1 ring-orange-200/50 transform hover:scale-105 transition-transform duration-300">
-                  <Zap className="w-4 h-4 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-base font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent truncate">
-                      Unlock Intent Signals
-                    </h2>
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gradient-to-r from-valasys-orange/10 to-orange-500/10 border border-orange-200 rounded-full flex-shrink-0">
-                      <div className="w-1 h-1 bg-gradient-to-r from-valasys-orange to-orange-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs font-semibold text-orange-700 whitespace-nowrap">Premium</span>
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-600 mt-0.5 truncate">
-                    Powered by <span className="font-semibold text-gray-900">Bombora</span> – Real-time buying intent insights
-                  </p>
-                </div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full mb-6">
+                <Zap className="w-4 h-4 text-white" />
+                <span className="text-xs font-semibold text-white">PREMIUM FEATURE</span>
               </div>
 
-              {/* Compact stats badge */}
-              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg shadow-sm flex-shrink-0">
-                <div className="text-center">
-                  <div className="text-xs font-bold text-valasys-orange leading-tight">48K+</div>
-                  <div className="text-xs text-gray-500 leading-tight">Credits</div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+                Unlock the <span className="block text-white/90">full power</span> of Intent Signals
+              </h2>
+
+              <p className="text-white/90 text-base leading-relaxed mb-8">
+                Access real-time buying intent data powered by Bombora. Boost your productivity, discover high-intent prospects, and stay ahead of the competition. Experience premium insights today.
+              </p>
+
+              {/* Visual showcase */}
+              <div className="relative mt-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-6 overflow-hidden group cursor-pointer hover:bg-white/15 transition-all">
+                <div className="flex items-center justify-center aspect-video bg-gradient-to-br from-white/10 to-white/5 rounded-lg">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm mb-3">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <p className="text-white/80 text-sm font-medium">See premium features</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Content Section */}
-          <div className="p-6 sm:p-8">
-            {/* Options */}
-            <div className="mb-8">
-              <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wider">
-                Choose what to unlock
+          {/* Right Column */}
+          <div className="p-8 sm:p-12 flex flex-col justify-between rounded-r-2xl">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-8">
+                Unlock premium features
               </h3>
-              <div className="space-y-2">
-                {unlockOptions.map((option) => (
-                  <label
-                    key={option.id}
-                    className="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-valasys-orange hover:bg-orange-50/30 cursor-pointer transition-all group"
-                  >
-                    <Checkbox
-                      checked={selectedOptions.has(option.id)}
-                      onCheckedChange={() => handleCheckboxChange(option.id)}
-                      className="flex-shrink-0 mt-0.5"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-gray-900 text-sm">
-                        {option.label}
-                      </p>
-                      <p className="text-xs text-gray-600 mt-1">
-                        {option.description}
-                      </p>
+
+              {/* Features List */}
+              <div className="space-y-4 mb-10">
+                {premiumFeatures.map((feature, index) => {
+                  const IconComponent = feature.icon;
+                  return (
+                    <div key={index} className="flex items-start gap-4 group">
+                      <div className="flex-shrink-0 mt-1">
+                        <CheckCircle2 className="w-5 h-5 text-valasys-orange" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-gray-600 text-xs">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                  </label>
-                ))}
+                  );
+                })}
+              </div>
+
+              {/* Credit info */}
+              <div className="bg-gradient-to-r from-orange-50 to-orange-100/50 border border-orange-200 rounded-lg p-4 mb-8">
+                <p className="text-sm text-gray-700">
+                  <span className="font-semibold text-gray-900">Credits remaining:</span>
+                  <br />
+                  <span className="text-lg font-bold text-valasys-orange">48,256 credits</span>
+                  <span className="text-gray-600"> • Each unlock uses 5 credits</span>
+                </p>
               </div>
             </div>
 
-            {/* Cost Alert */}
-            <div className="flex items-start gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg mb-8">
-              <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-blue-900">
-                <span className="font-semibold">Each unlock deducts 5 credits</span>
-                <br />
-                You have <span className="font-semibold">48,256 credits</span> remaining
-              </p>
-            </div>
-
             {/* Action Buttons */}
-            <div className="flex gap-3">
+            <div className="space-y-3">
+              <Button
+                onClick={handleUnlock}
+                className="w-full h-12 bg-gradient-to-r from-valasys-orange to-orange-500 hover:from-orange-600 hover:to-orange-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+              >
+                <Zap className="w-5 h-5 mr-2" />
+                Unlock Premium Features
+              </Button>
               <Button
                 onClick={() => {
                   onOpenChange(false);
                   setSelectedOptions(new Set(["current"]));
                 }}
                 variant="outline"
-                className="flex-1 h-10 border-gray-300 text-gray-700 hover:bg-gray-50"
+                className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg font-medium"
               >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleUnlock}
-                disabled={selectedOptions.size === 0}
-                className="flex-1 h-10 bg-gradient-to-r from-valasys-orange to-orange-500 hover:from-orange-600 hover:to-orange-600 text-white font-semibold shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Zap className="w-4 h-4 mr-2" />
-                Unlock Now
+                See Pricing Plans
               </Button>
             </div>
           </div>

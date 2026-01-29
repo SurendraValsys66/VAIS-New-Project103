@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Info } from "lucide-react";
 
 interface UnlockIntentSignalModalProps {
   open: boolean;
@@ -76,7 +76,9 @@ export default function UnlockIntentSignalModal({
             <div className="space-y-3">
               <h2 className="text-3xl font-bold text-gray-900 leading-tight">
                 Unlock the{" "}
-                <span className="text-teal-500">full power</span>
+                <span className="bg-gradient-to-r from-valasys-orange via-orange-400 to-valasys-green bg-clip-text text-transparent">
+                  full power
+                </span>
                 <br />
                 of Intent Signal
               </h2>
@@ -87,34 +89,13 @@ export default function UnlockIntentSignalModal({
               </p>
             </div>
 
-            {/* Device Mockup Image with Video Button */}
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 p-1">
-              <div className="relative rounded-xl bg-gradient-to-br from-blue-600 to-teal-400 aspect-video flex items-center justify-center overflow-hidden">
-                {/* Placeholder for device mockup */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-teal-500/20"></div>
-
-                {/* Mock device interface */}
-                <div className="relative w-full h-full flex items-center justify-center p-6">
-                  <div className="space-y-4 w-full">
-                    <div className="h-2 bg-white/30 rounded w-3/4"></div>
-                    <div className="h-2 bg-white/20 rounded"></div>
-                    <div className="h-2 bg-white/20 rounded w-5/6"></div>
-                  </div>
-                </div>
-
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="group relative">
-                    <div className="absolute inset-0 bg-white/20 rounded-full group-hover:bg-white/30 transition-colors"></div>
-                    <div className="relative w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/40 transition-colors">
-                      <Play className="w-6 h-6 text-white fill-white ml-0.5" />
-                    </div>
-                  </button>
-                  <span className="absolute bottom-6 left-6 text-white text-sm font-medium">
-                    Watch video
-                  </span>
-                </div>
-              </div>
+            {/* VAIS Product Image */}
+            <div className="relative rounded-2xl overflow-hidden">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F8dbb6e7a8a734c63b310cb1c08a8ce8b%2F5c3388ec3fcc408bbc81fa5f11c15baf?format=webp&width=800&height=1200"
+                alt="VAIS Advanced Sales Intelligence & Automation"
+                className="w-full h-auto object-cover rounded-2xl"
+              />
             </div>
           </div>
 
@@ -152,15 +133,28 @@ export default function UnlockIntentSignalModal({
               </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="mt-8">
+            {/* CTA Button and Credits Info */}
+            <div className="mt-8 space-y-4">
               <Button
                 onClick={handleUnlock}
                 disabled={selectedOptions.length === 0}
-                className="w-full h-12 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 disabled:from-gray-300 disabled:to-gray-300 text-white font-semibold rounded-lg transition-all duration-200"
+                className="w-full h-12 bg-gradient-to-r from-valasys-orange to-orange-500 hover:from-orange-600 hover:to-orange-600 disabled:from-gray-300 disabled:to-gray-300 text-white font-semibold rounded-lg transition-all duration-200"
               >
                 Unlock Signal
               </Button>
+
+              {/* Credits Info Box */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+                <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <div className="font-semibold text-blue-900">
+                    Each unlock deducts 5 credits
+                  </div>
+                  <div className="text-blue-700">
+                    You have 48,256 credits remaining
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

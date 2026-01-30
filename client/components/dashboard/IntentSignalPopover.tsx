@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Building2, MapPin, DollarSign, Target, X } from "lucide-react";
+import {
+  Building2,
+  MapPin,
+  DollarSign,
+  Target,
+  X,
+  TrendingUp,
+  Zap,
+  Activity,
+  Sparkles,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import IntentSignalModal from "./IntentSignalModal";
 import {
@@ -15,6 +25,8 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
+  Area,
+  AreaChart,
 } from "recharts";
 
 interface IntentSignalData {
@@ -130,25 +142,28 @@ export default function IntentSignalPopover({
             isPanelOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
-          {/* Header with Gradient */}
-          <div className="bg-gradient-to-r from-valasys-orange to-orange-500 text-white sticky top-0 z-10 border-b border-orange-600">
-            <div className="p-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3 flex-1 min-w-0">
-                  <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-                    <Building2 className="w-5 h-5 text-white" />
+          {/* Header with Modern Design */}
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white sticky top-0 z-10 border-b border-slate-700">
+            <div className="p-6">
+              {/* Company Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start space-x-4 flex-1 min-w-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-valasys-orange to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <Building2 className="w-6 h-6 text-white" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h2 className="text-lg font-bold truncate">
+                  <div className="flex-1 min-w-0 pt-1">
+                    <h2 className="text-xl font-bold truncate">
                       {data.companyName}
                     </h2>
-                    <p className="text-xs opacity-85">Intent Signal Analysis</p>
+                    <p className="text-sm text-slate-400 mt-0.5">
+                      Intent Signal Analysis
+                    </p>
                   </div>
                 </div>
                 <div className="ml-3 flex items-center space-x-2 flex-shrink-0">
                   <Badge
                     className={cn(
-                      "text-xs px-2 py-1 font-medium whitespace-nowrap",
+                      "text-xs px-3 py-1.5 font-semibold whitespace-nowrap",
                       getIntentSignalColor(data.intentSignal),
                     )}
                   >
@@ -156,30 +171,64 @@ export default function IntentSignalPopover({
                   </Badge>
                   <button
                     onClick={closePanelClick}
-                    className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors backdrop-blur-sm flex-shrink-0"
+                    className="w-9 h-9 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-colors flex-shrink-0"
                   >
-                    <X className="w-4 h-4 text-white" />
+                    <X className="w-4 h-4 text-slate-300" />
                   </button>
                 </div>
               </div>
 
-              {/* Quick Stats in Header */}
-              <div className="grid grid-cols-3 gap-2 mt-4">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 text-center">
-                  <div className="text-xs opacity-85 mb-0.5">VAIS</div>
-                  <div className="text-sm font-bold">{data.vais}%</div>
+              {/* Enhanced Stats Cards */}
+              <div className="grid grid-cols-3 gap-3">
+                {/* VAIS Stat */}
+                <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur-sm rounded-xl p-3.5 border border-blue-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-xs font-semibold text-slate-300 uppercase tracking-wide">
+                      VAIS Score
+                    </div>
+                    <div className="flex items-center space-x-1 text-emerald-400">
+                      <TrendingUp className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">+12%</span>
+                    </div>
+                  </div>
+                  <div className="text-2xl font-bold text-white">
+                    {data.vais}%
+                  </div>
+                  <p className="text-xs text-slate-400 mt-1">vs. 3 weeks ago</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 text-center">
-                  <div className="text-xs opacity-85 mb-0.5">Revenue</div>
-                  <div className="text-xs font-semibold truncate">
+
+                {/* Revenue Stat */}
+                <div className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 backdrop-blur-sm rounded-xl p-3.5 border border-emerald-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-xs font-semibold text-slate-300 uppercase tracking-wide">
+                      Revenue
+                    </div>
+                    <div className="flex items-center space-x-1 text-emerald-400">
+                      <Zap className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">+8%</span>
+                    </div>
+                  </div>
+                  <div className="text-lg font-bold text-white truncate">
                     {data.revenue}
                   </div>
+                  <p className="text-xs text-slate-400 mt-1">ARR Potential</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 text-center">
-                  <div className="text-xs opacity-85 mb-0.5">Location</div>
-                  <div className="text-xs font-semibold truncate">
+
+                {/* Location/Momentum Stat */}
+                <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 backdrop-blur-sm rounded-xl p-3.5 border border-purple-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-xs font-semibold text-slate-300 uppercase tracking-wide">
+                      Momentum
+                    </div>
+                    <div className="flex items-center space-x-1 text-yellow-400">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">High</span>
+                    </div>
+                  </div>
+                  <div className="text-sm font-bold text-white truncate">
                     {data.city}
                   </div>
+                  <p className="text-xs text-slate-400 mt-1">Strong Growth</p>
                 </div>
               </div>
             </div>
@@ -190,52 +239,98 @@ export default function IntentSignalPopover({
             <div className="space-y-6">
               {/* Intent Signal Breakdown Chart */}
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center space-x-2">
-                  <div className="w-1 h-5 bg-valasys-orange rounded-full"></div>
-                  <span>Intent Signal Breakdown</span>
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-base font-bold text-gray-900 flex items-center space-x-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-valasys-orange to-orange-500 rounded-full"></div>
+                    <span>Intent Signal Trend</span>
+                  </h3>
+                  <div className="flex items-center space-x-2 text-xs">
+                    <span className="text-gray-500">7-week view</span>
+                    <Activity className="w-3.5 h-3.5 text-emerald-500" />
+                  </div>
+                </div>
                 <div
-                  className="border border-gray-200 rounded-lg bg-gradient-to-br from-gray-50 to-white cursor-pointer hover:border-valasys-orange hover:shadow-md transition-all duration-300 overflow-hidden"
+                  className="border border-gray-200 rounded-xl bg-gradient-to-br from-slate-50 to-white cursor-pointer hover:border-valasys-orange hover:shadow-lg transition-all duration-300 overflow-hidden group"
                   onClick={handleChartClick}
-                  style={{ height: "280px" }}
+                  style={{ height: "320px" }}
                 >
                   <ChartContainer
                     config={chartConfig}
                     className="w-full h-full"
                   >
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
+                      <AreaChart
                         data={chartData}
                         margin={{
-                          top: 10,
+                          top: 15,
                           right: 30,
-                          left: 0,
-                          bottom: 10,
+                          left: -5,
+                          bottom: 15,
                         }}
                       >
+                        <defs>
+                          <linearGradient
+                            id="colorComposite"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#EF4444"
+                              stopOpacity={0.3}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#EF4444"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                          <linearGradient
+                            id="colorDelta"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#6366F1"
+                              stopOpacity={0.3}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#6366F1"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                        </defs>
                         <CartesianGrid
                           strokeDasharray="3 3"
-                          className="opacity-20"
+                          className="opacity-10"
                           vertical={false}
                         />
                         <XAxis
                           dataKey="week"
-                          fontSize={11}
+                          fontSize={12}
                           tickLine={false}
                           axisLine={false}
-                          tick={{ fill: "#999" }}
+                          tick={{ fill: "#999", fontSize: 12 }}
                         />
                         <YAxis
-                          fontSize={11}
+                          fontSize={12}
                           tickLine={false}
                           axisLine={false}
-                          tick={{ fill: "#999" }}
+                          tick={{ fill: "#999", fontSize: 12 }}
                         />
                         <ChartTooltip content={<ChartTooltipContent />} />
-                        <Line
+                        <Area
                           type="monotone"
                           dataKey="compositeScore"
                           stroke={chartConfig.compositeScore.color}
+                          fillOpacity={1}
+                          fill="url(#colorComposite)"
                           strokeWidth={2.5}
                           dot={{
                             fill: chartConfig.compositeScore.color,
@@ -247,10 +342,12 @@ export default function IntentSignalPopover({
                           }}
                           isAnimationActive={true}
                         />
-                        <Line
+                        <Area
                           type="monotone"
                           dataKey="deltaScore"
                           stroke={chartConfig.deltaScore.color}
+                          fillOpacity={1}
+                          fill="url(#colorDelta)"
                           strokeWidth={2.5}
                           dot={{
                             fill: chartConfig.deltaScore.color,
@@ -262,59 +359,85 @@ export default function IntentSignalPopover({
                           }}
                           isAnimationActive={true}
                         />
-                      </LineChart>
+                      </AreaChart>
                     </ResponsiveContainer>
                   </ChartContainer>
                 </div>
-                <p className="text-xs text-gray-500 mt-2 text-center hover:text-valasys-orange transition-colors cursor-pointer">
-                  Click to view full breakdown →
-                </p>
+                <div className="flex items-center justify-between mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="flex items-center space-x-4 flex-1">
+                    <div>
+                      <p className="text-xs text-gray-600 font-medium">
+                        Composite Score
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        ↑ 42% week-over-week
+                      </p>
+                    </div>
+                    <div className="w-px h-8 bg-gray-300"></div>
+                    <div>
+                      <p className="text-xs text-gray-600 font-medium">
+                        Delta Score
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        ↑ 18% week-over-week
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-valasys-orange font-semibold cursor-pointer hover:underline ml-4">
+                    View Details →
+                  </p>
+                </div>
               </div>
 
               {/* Topics Section */}
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center space-x-2">
-                  <div className="w-1 h-5 bg-valasys-orange rounded-full"></div>
-                  <span>High Intent Topics</span>
+                <h3 className="text-sm font-bold text-gray-900 mb-2.5 flex items-center space-x-2">
+                  <div className="w-1 h-4 bg-gradient-to-b from-valasys-orange to-orange-500 rounded-full"></div>
+                  <span>Top Topics</span>
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-1.5">
                   {data.relatedTopics.slice(0, 3).map((topic, index) => {
                     const scores = [65, 63, 58];
                     const score =
                       scores[index] || Math.floor(Math.random() * 40 + 60);
+                    const growthTrends = ["+24%", "+18%", "+12%"];
                     return (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-lg hover:border-valasys-orange hover:shadow-md transition-all duration-300 group"
+                        className="flex items-center justify-between p-2.5 bg-gray-50 border border-gray-200 rounded-lg hover:border-valasys-orange hover:bg-orange-50 transition-all duration-300 group"
                       >
-                        <div className="flex items-center space-x-3 flex-1">
-                          <div className="w-2 h-2 bg-valasys-orange rounded-full group-hover:scale-125 transition-transform"></div>
-                          <span className="text-sm text-gray-700 font-medium">
+                        <div className="flex items-center space-x-2 flex-1 min-w-0">
+                          <div className="w-1.5 h-1.5 bg-valasys-orange rounded-full flex-shrink-0"></div>
+                          <span className="text-xs font-medium text-gray-700 truncate">
                             {topic}
                           </span>
                         </div>
-                        <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-200 font-semibold text-xs">
-                          {score}
-                        </Badge>
+                        <div className="flex items-center space-x-2 flex-shrink-0 ml-2">
+                          <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-200 font-semibold text-xs px-2">
+                            {score}
+                          </Badge>
+                          <span className="text-xs font-semibold text-emerald-600 w-10 text-right">
+                            {growthTrends[index]}
+                          </span>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
-                {data.relatedTopics.length > 3 && (
-                  <p className="text-xs text-gray-500 mt-3 text-center">
-                    Showing 3 of {data.relatedTopics.length} topics
-                  </p>
-                )}
               </div>
 
               {/* Footer Info */}
-              <div className="border-t border-gray-200 pt-4">
-                <p className="text-xs text-gray-500 text-center">
-                  <span className="text-valasys-orange font-semibold">
-                    Tip:
-                  </span>{" "}
-                  Click the chart to view detailed breakdown
-                </p>
+              <div className="border-t border-gray-200 pt-4 mt-2">
+                <div className="bg-gradient-to-r from-valasys-orange/10 to-orange-500/10 border border-orange-200/50 rounded-lg p-3">
+                  <p className="text-xs text-gray-700">
+                    <span className="text-valasys-orange font-bold">
+                      💡 Insight:
+                    </span>{" "}
+                    This company shows strong intent signals across multiple
+                    topics with consistent week-over-week growth. Click the
+                    chart for deeper analysis.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

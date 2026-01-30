@@ -199,7 +199,7 @@ export default function IntentSignalPopover({
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-xs font-semibold text-slate-300 uppercase tracking-wide">Momentum</div>
                     <div className="flex items-center space-x-1 text-yellow-400">
-                      <Spark className="w-3.5 h-3.5" />
+                      <Sparkles className="w-3.5 h-3.5" />
                       <span className="text-xs font-semibold">High</span>
                     </div>
                   </div>
